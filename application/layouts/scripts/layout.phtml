@@ -1,0 +1,33 @@
+<?php
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Entertainment Centre');
+$this->headLink()->appendStylesheet($this->baseUrl() . '/css/mystyles.css');
+//$this->headScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
+$this->headScript()->appendFile($this->baseUrl() . '/js/demo.js');
+
+echo $this->doctype();
+?>
+<html >
+    <head>
+        <?php
+        echo $this->headMeta(),
+        $this->headTitle(), $this->headScript(), $this->headLink();
+        ?>
+
+    </head>
+
+    <!--    <body onload='sayhello();'>-->
+    <body >
+        <div id='headdiv'>
+            <img src="<?php echo $this->baseUrl() . '/siteimages/logo.jpg'; ?>" />
+            <div id="ident"><p>Entertainment Centre</p></div>
+        </div>
+
+        <div id="content">
+            <?php echo $this->layout()->content; ?>
+        </div>
+    </div>
+
+</body>
+</html>

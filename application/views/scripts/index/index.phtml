@@ -1,0 +1,35 @@
+<?php
+$authenticationdata = Zend_Auth::getInstance();
+if ($authenticationdata->hasIdentity()) {
+    echo "<h2>Logged in</h2>";
+    echo "<p>Currently logged in as ";
+    echo $authenticationdata->getIdentity()->fullname;
+    echo "; role = ";
+    echo $authenticationdata->getIdentity()->role;
+    echo ". <a href='";
+    echo $this->url(array('controller' => 'index', 'action' => 'logout'));
+    echo "' >Logout</a></p>";
+}
+?>
+<div id="welcome">
+    <h1>Welcome</h1>
+    <?php
+    echo "<ul>";
+    echo "<li><a href='";
+    echo $this->url(array('controller' => 'index', 'action' => 'search'));
+    echo "' >Search for shows</a></li>";
+    if (!$authenticationdata->hasIdentity()) {
+        echo "<li><a href='";
+        echo $this->url(array('controller' => 'index', 'action' => 'login'));
+        echo "' >Staff login</a></li>";
+    } else {
+        echo "<li><a href='";
+        echo $this->url(array('controller' => 'index', 'action' => 'scheduleevent'));
+        echo "' >Schedule event</a></li>";
+        echo "<li><a href='";
+        echo $this->url(array('controller' => 'index', 'action' => 'addinfo'));
+        echo "' >Add information to event record</a></li>";
+    }
+    echo "</ul>";
+    ?>
+</div>
