@@ -23,7 +23,21 @@ echo $this->doctype();
             <img src="<?php echo $this->baseUrl() . '/siteimages/logo.jpg'; ?>" />
             <div id="ident"><p>Entertainment Centre</p></div>
         </div>
-
+        <?php
+        $authenticationdata = Zend_Auth::getInstance();
+        if ($authenticationdata->hasIdentity()) {
+            echo "<div id='loggedin'>";
+            echo "<h2>Logged in</h2>";
+            echo "<p>Currently logged in as ";
+            echo $authenticationdata->getIdentity()->fullname;
+            echo "; role = ";
+            echo $authenticationdata->getIdentity()->role;
+            echo ". <a href='";
+            echo $this->url(array('controller' => 'index', 'action' => 'logout'));
+            echo "' >Logout</a></p>";
+            echo "</div>";
+        }
+        ?>
         <div id="content">
             <?php echo $this->layout()->content; ?>
         </div>

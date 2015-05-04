@@ -5,13 +5,7 @@ class Application_Form_Scheduleeventform extends Zend_Form {
     public function init() {
 
         $this->setMethod('post');
-        // This form uses HTML5 - so the browser will do some
-        // validation anyway along with supplying more sophisticated
-        // input fields
-        // Some elements have validators defined - checking on
-        // receipt of data (you can never trust browser checks,
-        // the data submitted may have been hand crafted by a hacker)
-
+        
         $identifier = new Zend_Form_Element_Text('identifier');
         $identifier->setLabel('Show identifier');
         $identifier->setAttrib('size', 50);
@@ -28,11 +22,25 @@ class Application_Form_Scheduleeventform extends Zend_Form {
 
         $venue = new Zend_Form_Element_Select('venue');
         $venue->setLabel('Venue');
+        $venue->addMultiOption('Opera', 'Opera');
         $venue->addMultiOption('Concert', 'Concert');
+        $venue->addMultiOption('Playhouse', 'Playhouse');
+        $venue->addMultiOption('Studio', 'Studio');
 
         $type = new Zend_Form_Element_Select('type');
         $type->setLabel('Type');
+        $type->addMultiOption('Drama', 'Drama');
+        $type->addMultiOption('Film', 'Film');
+        $type->addMultiOption('Opera', 'Opera');
+        $type->addMultiOption('Jazz', 'Jazz');
         $type->addMultiOption('World Music', 'World Music');
+        $type->addMultiOption('Ballet', 'Ballet');
+        $type->addMultiOption('Recital', 'Recital');
+        $type->addMultiOption('Concert', 'Concert');
+        $type->addMultiOption('Choral', 'Choral');
+        $type->addMultiOption('Contemporary Dance', 'Contemporary Dance');
+        $type->addMultiOption('Comedy', 'Comedy');
+        $type->addMultiOption('Children', 'Children');
 
         $fromdate = new NABG_Element_HTML5TextType('fromdate');
         $fromdate->setAttrib('thetype', 'date');
@@ -63,10 +71,8 @@ class Application_Form_Scheduleeventform extends Zend_Form {
         $performances->addFilter('Alnum');
         $performances->addValidator('StringLength', false, array('min' => 2, 'max' => 1000));
 
-
-        $submit = $this->createElement('submit', 'submit');
-
-        $submit->setLabel("Submit data ");
+        $addevent = $this->createElement('submit', 'submit');
+        $addevent->setLabel("Add event");
 
         $this->addElements(array(
             $identifier,
@@ -77,7 +83,7 @@ class Application_Form_Scheduleeventform extends Zend_Form {
             $company,
             $description,
             $performances,
-            $submit
+            $addevent
         ));
 
         $this->addDisplayGroup(array(

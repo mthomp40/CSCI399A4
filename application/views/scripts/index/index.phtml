@@ -1,23 +1,11 @@
-<?php
-$authenticationdata = Zend_Auth::getInstance();
-if ($authenticationdata->hasIdentity()) {
-    echo "<h2>Logged in</h2>";
-    echo "<p>Currently logged in as ";
-    echo $authenticationdata->getIdentity()->fullname;
-    echo "; role = ";
-    echo $authenticationdata->getIdentity()->role;
-    echo ". <a href='";
-    echo $this->url(array('controller' => 'index', 'action' => 'logout'));
-    echo "' >Logout</a></p>";
-}
-?>
 <div id="welcome">
     <h1>Welcome</h1>
     <?php
     echo "<ul>";
     echo "<li><a href='";
-    echo $this->url(array('controller' => 'index', 'action' => 'search'));
+    echo $this->url(array('controller' => 'index', 'action' => 'searchshows'));
     echo "' >Search for shows</a></li>";
+    $authenticationdata = Zend_Auth::getInstance();
     if (!$authenticationdata->hasIdentity()) {
         echo "<li><a href='";
         echo $this->url(array('controller' => 'index', 'action' => 'login'));

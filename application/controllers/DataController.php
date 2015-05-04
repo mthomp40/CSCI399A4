@@ -15,11 +15,11 @@ class DataController extends Zend_Controller_Action
 
     public function doaAction()
     {
-         $db = new Application_Model_DbTable_MoviesTable();
+         $db = new Application_Model_DbTable_ShowsTable();
         $select = $db->select();
         $select->order(array('year'));
         $data = $db->fetchAll($select);
-        $this->view->movies = $data;
+        $this->view->shows = $data;
     }
 
     public function dobAction()

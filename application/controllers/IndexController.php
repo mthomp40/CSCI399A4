@@ -10,6 +10,15 @@ class IndexController extends Zend_Controller_Action {
         // action body
     }
     
+    public function searchshowsAction() {
+        $searchshowsform = new Application_Form_Searchshowsform();
+        $this->view->form = $searchshowsform;
+        if ($this->getRequest()->isPost()) {
+            $inputdata = $this->getRequest()->getPost();
+            
+        }
+    }
+
     public function scheduleeventAction() {
         $scheduleeventform = new Application_Form_Scheduleeventform();
         $this->view->form = $scheduleeventform;
@@ -57,10 +66,6 @@ class IndexController extends Zend_Controller_Action {
         /* If $report has been set in post action it will display 
          * the data submitted, else just shows the form 
          */
-    }
-
-    public function anotherAction() {
-        
     }
 
     private function checkcredentials($formData) {
