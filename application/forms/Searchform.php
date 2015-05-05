@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Searchshowsform extends Zend_Form {
+class Application_Form_Searchform extends Zend_Form {
 
     public function init() {
 
@@ -8,6 +8,7 @@ class Application_Form_Searchshowsform extends Zend_Form {
         
         $type = new Zend_Form_Element_Select('type');
         $type->setLabel('Type');
+        $type->addMultiOption('All', 'All');
         $type->addMultiOption('Drama', 'Drama');
         $type->addMultiOption('Film', 'Film');
         $type->addMultiOption('Opera', 'Opera');
@@ -23,6 +24,7 @@ class Application_Form_Searchshowsform extends Zend_Form {
 
         $venue = new Zend_Form_Element_Select('venue');
         $venue->setLabel('Venue');
+        $venue->addMultiOption('Any', 'Any');
         $venue->addMultiOption('Opera', 'Opera');
         $venue->addMultiOption('Concert', 'Concert');
         $venue->addMultiOption('Playhouse', 'Playhouse');
@@ -51,7 +53,7 @@ class Application_Form_Searchshowsform extends Zend_Form {
             'venue',
             'fromdate', 'todate',
             'submit'
-                ), 'inputdata', array('legend' => 'Search'));
+                ), 'inputdata', array('legend' => 'Search for shows'));
     }
 
 }

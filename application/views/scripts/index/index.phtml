@@ -3,7 +3,7 @@
     <?php
     echo "<ul>";
     echo "<li><a href='";
-    echo $this->url(array('controller' => 'index', 'action' => 'searchshows'));
+    echo $this->url(array('controller' => 'data', 'action' => 'search'));
     echo "' >Search for shows</a></li>";
     $authenticationdata = Zend_Auth::getInstance();
     if (!$authenticationdata->hasIdentity()) {
@@ -12,10 +12,10 @@
         echo "' >Staff login</a></li>";
     } else {
         echo "<li><a href='";
-        echo $this->url(array('controller' => 'index', 'action' => 'scheduleevent'));
+        echo $this->url(array('controller' => 'data', 'action' => 'schedule'));
         echo "' >Schedule event</a></li>";
         echo "<li><a href='";
-        echo $this->url(array('controller' => 'index', 'action' => 'addinfo'));
+        echo $this->url(array('controller' => 'data', 'action' => 'addinfo'));
         echo "' >Add information to event record</a></li>";
     }
     echo "</ul>";

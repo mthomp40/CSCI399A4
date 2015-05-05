@@ -13,14 +13,14 @@ CREATE TABLE `ecuserroles` (
 CREATE TABLE `ECPresentations` (
     `mykey` VARCHAR(32) NOT NULL,
     `venue` ENUM('Opera', 'Concert', 'Playhouse', 'Studio') NOT NULL,
-    `startsession` DATE NOT NULL,
+    `startseason` DATE NOT NULL,
     `endseason` DATE NOT NULL,
     `genre` ENUM('Drama', 'Film', 'Opera', 'Jazz', 'World Music',
         'Ballet', 'Recital', 'Concert', 'Choral', 'Contemporary Dance',
         'Comedy', 'Children') NOT NULL,
     `title` VARCHAR(128) NOT NULL,
     `company` VARCHAR(128) NOT NULL,
-    `shortdecription` MEDIUMTEXT NOT NULL,
+    `shortdescription` MEDIUMTEXT NOT NULL,
     PRIMARY KEY (`mykey`));
 
 CREATE TABLE `ECPerformances` (

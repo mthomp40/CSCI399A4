@@ -1,0 +1,32 @@
+<?php
+if ($this->record) {
+    echo '<h1>New record added</h1>';
+    $authenticationdata = Zend_Auth::getInstance();
+    if ($authenticationdata->hasIdentity()) {
+        echo "<ul>";
+        echo "<li><a href='";
+        echo $this->url(array('controller' => 'data', 'action' => 'schedule'));
+        echo "' >Schedule another event</a></li>";
+        echo "<li><a href='";
+        echo $this->url(array('controller' => 'data', 'action' => 'addinfo'));
+        echo "' >Add information to event record</a></li>";
+        echo "</ul>";
+    }
+} else {
+    echo "<h1 align='center'>Create new show record</h1>";
+    echo $this->form;
+    ?>
+
+    <fieldset id="performancefieldset">
+        <legend>Enter performance details</legend>
+        <br>Show time<br>
+        <select id="showtime" name="showtime">
+            <option value="matinee">matinee</option>
+            <option value="evening">evening</option>
+        </select><br><br>
+        Date<br>
+        <input type="date" id="performancedate"><br><br>
+        <input type="button" id="addperformance" value="Add performance" onclick="addPerformance()"><br><br>
+    </fieldset>    
+    <?php
+}

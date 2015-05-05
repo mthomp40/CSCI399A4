@@ -1,10 +1,8 @@
 <?php
 
-class Application_Model_DbTable_ShowsTable extends Zend_Db_Table_Abstract
-{
+class Application_Model_DbTable_ShowsTable extends Zend_Db_Table_Abstract {
 
-    protected $_name = 'shows';
-
+    protected $_name = 'ECPresentations';
+    protected $_primary = 'mykey';
 
 }
-

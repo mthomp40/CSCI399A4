@@ -1,0 +1,23 @@
+<h1 align="center">Add details to Show</h1>
+<?php
+if ($this->show) {
+    echo '<p>Records added to ' . $this->show->mykey . ': ' . $this->show->title . '</p>';
+}
+?>
+<form method="POST" action="">
+    <fieldset>
+        <legend>Show</legend>
+        Show identifier  <input type="text" id="identifier" name="identifier"><br>
+    </fieldset><br>
+    <fieldset>
+        <legend>Supplementary Data</legend>
+        <table id="droppertable" border="1">
+            <tr><th>Picture</th><th>Comment</th></tr>
+        </table><br>
+        <input type="button" value="Add data" onclick="addData()"><br>
+    </fieldset><br>
+    <fieldset>
+        <legend>Action</legend>
+        <input type="submit" name="submit" value="Add details"><br>
+    </fieldset><br>
+</form>

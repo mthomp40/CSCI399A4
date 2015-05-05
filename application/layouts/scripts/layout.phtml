@@ -4,7 +4,7 @@ $this->headTitle()->setSeparator(' - ');
 $this->headTitle('Entertainment Centre');
 $this->headLink()->appendStylesheet($this->baseUrl() . '/css/mystyles.css');
 //$this->headScript()->appendFile('http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js');
-$this->headScript()->appendFile($this->baseUrl() . '/js/demo.js');
+$this->headScript()->appendFile($this->baseUrl() . '/js/scripts.js');
 
 echo $this->doctype();
 ?>
@@ -20,7 +20,7 @@ echo $this->doctype();
     <!--    <body onload='sayhello();'>-->
     <body >
         <div id='headdiv'>
-            <img src="<?php echo $this->baseUrl() . '/siteimages/logo.jpg'; ?>" />
+            <img src="<?php echo $this->baseUrl() . '/siteimages/logo.png'; ?>" />
             <div id="ident"><p>Entertainment Centre</p></div>
         </div>
         <?php

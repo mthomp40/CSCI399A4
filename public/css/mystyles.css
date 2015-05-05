@@ -3,11 +3,11 @@ root {
     display: block;
 }
 
-
 body {
     background-color: #ffffff;
-    color: #8c489f;
-    margin: 0px;
+    color: #13afd1;
+    margin-left: 40px;
+    margin-right: 40px;
     padding: 0px;
     font-family: Verdana,Arial,Helvetica,sans-serif;
 }
@@ -15,15 +15,13 @@ body {
 h1 { font-size: 1.6em; }
 h2 { font-size: 1.4em; }
 
-
 #ident {
     position:absolute;
     top:20px;
     left:500px;
     font-size:4em;
-    color:#8c489f;
-    font-family: Georgia,'Times New Roman',times,serif;
-    font-style:italic;
+    color:#2a38e6;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
 }
 
 #navbar {
@@ -68,6 +66,22 @@ h2 { font-size: 1.4em; }
 
 #appform {
     padding-left:8px;
+}
+
+#performancefieldset {
+    margin-left:40px;
+}
+
+#showtime {
+    margin-left:40px;
+}
+
+#performancedate {
+    margin-left:40px;
+}
+
+#addperformance {
+    margin-left:40px;
 }
 
 p.description {

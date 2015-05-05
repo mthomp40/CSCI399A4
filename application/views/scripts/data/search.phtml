@@ -1,0 +1,15 @@
+<?php
+
+if ($this->report) {
+    echo '<h1 align = "center">Shows on at the Entertainment Centre</h1>';
+    echo "<ul>";
+    foreach ($this->report as $ashow) {
+        echo "<li><a href='";
+        echo $this->url(array('controller' => 'data', 'action' => 'showshow', 'id' => $ashow->mykey));
+        echo "'>" . $ashow->title . "</a></li>";
+    }
+    echo "</ul>";
+} else {
+    echo "<h1 align='center'>What's on at the Entertainment Centre</h1>";
+    echo $this->form;
+}

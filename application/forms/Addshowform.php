@@ -1,6 +1,6 @@
 <?php
 
-class Application_Form_Scheduleeventform extends Zend_Form {
+class Application_Form_Addshowform extends Zend_Form {
 
     public function init() {
 
@@ -8,17 +8,17 @@ class Application_Form_Scheduleeventform extends Zend_Form {
         
         $identifier = new Zend_Form_Element_Text('identifier');
         $identifier->setLabel('Show identifier');
-        $identifier->setAttrib('size', 50);
+        $identifier->setAttrib('size', 32);
         $identifier->setAttrib('required', true);
         $identifier->addFilter('Alnum');
-        $identifier->addValidator('StringLength', false, array('min' => 2, 'max' => 50));
+        $identifier->addValidator('StringLength', false, array('min' => 2, 'max' => 32));
 
         $title = new Zend_Form_Element_Text('title');
         $title->setLabel('Title');
-        $title->setAttrib('size', 100);
+        $title->setAttrib('size', 50);
         $title->setAttrib('required', true);
         $title->addFilter('Alnum');
-        $title->addValidator('StringLength', false, array('min' => 2, 'max' => 100));
+        $title->addValidator('StringLength', false, array('min' => 2, 'max' => 50));
 
         $venue = new Zend_Form_Element_Select('venue');
         $venue->setLabel('Venue');
@@ -26,6 +26,7 @@ class Application_Form_Scheduleeventform extends Zend_Form {
         $venue->addMultiOption('Concert', 'Concert');
         $venue->addMultiOption('Playhouse', 'Playhouse');
         $venue->addMultiOption('Studio', 'Studio');
+        $venue->setValue('Opera');
 
         $type = new Zend_Form_Element_Select('type');
         $type->setLabel('Type');
@@ -41,7 +42,8 @@ class Application_Form_Scheduleeventform extends Zend_Form {
         $type->addMultiOption('Contemporary Dance', 'Contemporary Dance');
         $type->addMultiOption('Comedy', 'Comedy');
         $type->addMultiOption('Children', 'Children');
-
+        $type->setValue('Drama');
+        
         $fromdate = new NABG_Element_HTML5TextType('fromdate');
         $fromdate->setAttrib('thetype', 'date');
         $fromdate->setLabel("From date");
@@ -52,24 +54,25 @@ class Application_Form_Scheduleeventform extends Zend_Form {
 
         $company = new Zend_Form_Element_Text('company');
         $company->setLabel('Company');
-        $company->setAttrib('size', 100);
+        $company->setAttrib('size', 50);
         $company->setAttrib('required', true);
         $company->addFilter('Alnum');
-        $company->addValidator('StringLength', false, array('min' => 2, 'max' => 100));
+        $company->addValidator('StringLength', false, array('min' => 2, 'max' => 50));
 
         $description = new Zend_Form_Element_Textarea('description');
         $description->setLabel('Description');
-        $description->setAttrib('size', 1000);
+        $description->setAttrib('cols', 80);
+        $description->setAttrib('rows', 4);
         $description->setAttrib('required', true);
         $description->addFilter('Alnum');
-        $description->addValidator('StringLength', false, array('min' => 2, 'max' => 1000));
+        $description->addValidator('StringLength', false, array('min' => 2, 'max' => 128));
 
         $performances = new Zend_Form_Element_Textarea('performances');
         $performances->setLabel('Performances');
-        $performances->setAttrib('size', 1000);
-        $performances->setAttrib('required', true);
+        $performances->setAttrib('readonly', true);
+        $performances->setAttrib('cols', 80);
+        $performances->setAttrib('rows', 4);
         $performances->addFilter('Alnum');
-        $performances->addValidator('StringLength', false, array('min' => 2, 'max' => 1000));
 
         $addevent = $this->createElement('submit', 'submit');
         $addevent->setLabel("Add event");
@@ -97,6 +100,7 @@ class Application_Form_Scheduleeventform extends Zend_Form {
             'performances',
             'submit'
                 ), 'inputdata', array('legend' => 'Add a show'));
+        
     }
 
 }

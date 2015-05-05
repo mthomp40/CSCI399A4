@@ -16,11 +16,23 @@ class DataController extends Zend_Controller_Action {
         $this->view->form = $searchform;
         if ($this->getRequest()->isPost()) {
             $inputdata = $this->getRequest()->getPost();
+            $venue = $inputdata['venue'];
+            $type = $inputdata['type'];
+            $fromdate = $inputdata['fromdate'];
+            $todate = $inputdata['todate'];
             if ($searchform->isValid($inputdata)) {
                 $db = new Application_Model_DbTable_ShowsTable();
-                $select = $db->select()
-                        ->where('venue = ? and genre = ? and startseason >= ? and endseason <= ?', $inputdata->venue, $inputdata->type, $inputdata->fromdate, $inputdata->todate);
-                $data = $db->fetchAll($where);
+                if ($venue !== 'Any') {
+                    $db->select()
+                            ->where('venue = ?', $venue);
+                }
+                if ($type !== 'All') {
+                    $db->select()
+                            ->where('genre = ?', $type);
+                }
+                $db->select()
+                        ->where('startseason >= ? and endseason <= ?', $fromdate, $todate);
+                $data = $db->fetchAll();
                 $this->view->report = $data;
             } else {
                 $searchform->populate($inputdata);
@@ -43,8 +55,11 @@ class DataController extends Zend_Controller_Action {
                     $selector->where('showid = ?', $id);
                     $data = $db->fetchAll($selector);
                     $this->view->performances = $data;
-                } else {
-                    
+                    $db = new Application_Model_DbTable_InfoTable();
+                    $selector = $db->select();
+                    $selector->where('showid = ?', $id);
+                    $data = $db->fetchAll($selector);
+                    $this->view->info = $data;
                 }
             }
         } else {
@@ -79,12 +94,33 @@ class DataController extends Zend_Controller_Action {
                     }
                 }
             }
-            echo "<h1>New record added</h1>";
-            echo "<ul><li><a href='schedule'>Schedule another event</a></li>";
-            echo "<li><a href='addinfo'>Add information to event record</a></li></ul>";
+            $this->view->record = $showdata;
         } else {
             $addshowform = new Application_Form_Addshowform();
             $this->view->form = $addshowform;
+        }
+    }
+
+    public function addinfoAction() {
+        if ($this->getRequest()->isPost()) {
+            $showid = $this->getRequest()->getPost('identifier');
+            foreach ($this->getRequest()->getPost() as $key => $value) {
+                if (substr($key, 0, 3) === 'img') {
+                    $num = substr($key, 3);
+                    $details = $this->getRequest()->getPost('info' . $num);
+                    $infoTable = new Application_Model_DbTable_InfoTable();
+                    $infodata = array('showid' => $showid, 'details' => $details,
+                        'picy' => $value);
+                    $infoTable->insert($infodata);
+                }
+            }
+            $db = new Application_Model_DbTable_ShowsTable();
+            $selector = $db->select();
+            $selector->where('mykey = ?', $showid);
+            $data = $db->fetchRow($selector);
+            if ($data) {
+                $this->view->show = $data;
+            }
         }
     }
 
