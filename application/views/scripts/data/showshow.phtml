@@ -1,0 +1,23 @@
+<?php if (isset($this->messages)) : ?>
+    <p><?php echo $this->messages; ?></p>
+    <?php
+else :
+    if ($this->show) {
+        echo "<h1>" . $this->show->title . "</h1>";
+        echo "<h2>" . $this->show->company . "</h2>";
+        echo "<p>On at " . $this->show->venue . "</p>" . " from " . $this->show->startseason . " to " . $this->show->endseason . "</p>";
+        echo "<br><p>" . $this->show->shortdescription . "</p>";
+        echo "<h3>Scheduled performances</h3>";
+        echo "<ul>";
+        foreach ($this->performances as $aperformance) {
+            echo "<li><p>" . $aperformance->showdate . " : " . $aperformance->showtime . "</p></li>";
+        }
+        echo "</ul>";
+        echo "<table>";
+        foreach ($this->info as $ainfo) {
+            echo '<tr><td><img width="200" height="200" src=' . $ainfo->picy . '></td>' .
+            '<td>' . $ainfo->details . '</td></tr>';
+        }
+        echo "</table>";
+    }
+endif;
